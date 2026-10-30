@@ -92,3 +92,19 @@
 .faq details p { color: var(--muted); margin: 10px 0 0; }
 
 .btn-app { background: var(--app); color: #fff; box-shadow: var(--shadow); }
+
+/* App pages are always dark, like the apps themselves */
+:root.dark {
+  color-scheme: dark;
+  --bg: #11151c;
+  --surface: #1a2029;
+  --band: #161b23;
+  --ink: #eef1f5;
+  --muted: #a3abb7;
+  --line: #2a313c;
+  --accent: #fb923c;
+  --accent-ink: #1a0f06;
+  --live: #4ade80;
+  --live-bg: #14301f;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+}
