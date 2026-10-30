@@ -1,0 +1,94 @@
+/* App pages: /snapcontact/, /handyslip/, /safeghost/. Loaded after site.css.
+   Each page sets its own --app color on <body>. */
+
+.app-hero {
+  display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: center;
+  padding-top: 72px; padding-bottom: 40px;
+}
+.app-hero .app-icon {
+  width: 152px; height: 152px; border-radius: 22.5%;
+  box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 24px 56px color-mix(in srgb, var(--app) 35%, transparent);
+}
+.app-hero h1 { font-size: clamp(42px, 5.6vw, 68px); }
+.app-hero .lead { margin-top: 16px; }
+.app-hero .eyebrow { color: var(--app); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+@media (max-width: 700px) {
+  .app-hero { grid-template-columns: 1fr; gap: 24px; padding-top: 48px; }
+  .app-hero .app-icon { width: 104px; height: 104px; }
+}
+
+/* Screenshot collage: staggered row on wide screens, swipeable strip on phones */
+.shots {
+  display: flex; gap: 18px; padding: 28px 24px 56px;
+  max-width: 1240px; margin: 0 auto;
+  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+}
+.shots::-webkit-scrollbar { display: none; }
+.shots img {
+  flex: 0 0 auto; width: 210px; height: auto; border-radius: 18px;
+  scroll-snap-align: center; box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+@media (min-width: 1000px) {
+  .shots { justify-content: center; overflow: visible; }
+  .shots img { width: calc((100% - 18px * (var(--n) - 1)) / var(--n)); max-width: 230px; }
+  .shots img:nth-child(even) { transform: translateY(32px); }
+}
+@media (max-width: 600px) { .shots { padding: 20px 16px 40px; } .shots img { width: 64vw; } }
+
+/* Problem → answer */
+.why { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 760px) { .why { grid-template-columns: 1fr; } }
+.why > div {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 30px; box-shadow: var(--shadow);
+}
+.why .label { margin: 0 0 10px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.why .answer .label { color: var(--app); }
+.why p { margin: 0; }
+.why p + p { margin-top: 12px; }
+
+/* Advantages */
+.plus { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 28px; }
+@media (max-width: 900px) { .plus { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .plus { grid-template-columns: 1fr; gap: 26px; } }
+.plus div { border-top: 2px solid var(--app); padding-top: 16px; }
+.plus p { color: var(--muted); margin: 8px 0 0; font-size: 16px; }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: step; }
+@media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+.steps div {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 26px; box-shadow: var(--shadow);
+}
+.steps div::before {
+  counter-increment: step; content: counter(step);
+  display: grid; place-items: center; width: 36px; height: 36px; margin-bottom: 14px;
+  border-radius: 50%; background: var(--app); color: #fff; font-weight: 700;
+}
+.steps p { color: var(--muted); margin: 8px 0 0; font-size: 16px; }
+
+/* Facts table reused for privacy & pricing */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+@media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+.two h3 { margin-bottom: 12px; }
+.list { margin: 0; padding: 0; list-style: none; }
+.list li { position: relative; padding: 10px 0 10px 28px; border-bottom: 1px solid var(--line); }
+.list li:last-child { border-bottom: 0; }
+.list li::before {
+  content: ""; position: absolute; left: 4px; top: 19px;
+  width: 9px; height: 9px; border-radius: 50%; background: var(--app);
+}
+.small { color: var(--muted); font-size: 14px; margin: 14px 0 0; }
+
+/* FAQ */
+.faq details {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  padding: 18px 22px; margin-bottom: 12px;
+}
+.faq summary { cursor: pointer; font-weight: 600; }
+.faq details p { color: var(--muted); margin: 10px 0 0; }
+
+.btn-app { background: var(--app); color: #fff; box-shadow: var(--shadow); }

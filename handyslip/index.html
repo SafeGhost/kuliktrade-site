@@ -1,62 +1,194 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HandySlip Support</title>
-  <meta name="description" content="HandySlip: estimates and invoices for handymen, in a minute.">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HandySlip — Estimates and invoices in a minute</title>
+<meta name="description" content="HandySlip: estimates and invoices for handymen and home-service pros. Tap your services or just say them, send a clean PDF, get paid. Works offline.">
+<meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#11151c" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://kuliktrade.com/handyslip/">
+<link rel="apple-touch-icon" href="icon.png">
 <link rel="icon" href="icon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/app-page.css">
 </head>
-<body>
+<body style="--app: #e8590c">
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="brand" href="../" aria-label="K-Studio home">
+      <span class="mark" aria-hidden="true">K</span>
+      <span class="brand-name">K-Studio</span>
+    </a>
+    <nav aria-label="Main">
+      <a href="../#apps">All apps</a>
+      <a href="#questions">Support</a>
+      <a class="nav-cta" href="mailto:support@kuliktrade.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-  <header><img src="icon.png" alt=""><a href="index.html">HandySlip</a></header>
-  <h1>Estimates and invoices for handymen, in a minute</h1>
-  <p class="muted">Tap your services or just say the job, send a clean PDF, get
-  paid. Works offline, no sign-up.</p>
+  <section class="wrap app-hero">
+    <img class="app-icon" src="icon.png" alt="HandySlip app icon" width="152" height="152">
+    <div>
+      <p class="eyebrow">HandySlip · Business</p>
+      <h1>The client asks “How much?” <em style="color: var(--app)">A minute later</em> they have it.</h1>
+      <p class="lead">Estimates and invoices for handymen, cleaners, movers, painters and other home-service pros. Tap your services or just say the job, send a clean PDF, get it signed, get paid. Works offline.</p>
+      <div class="meta"><span class="chip">Coming soon to Google Play and the App Store</span><span class="chip">iPhone · Android</span><span class="chip">Free plan</span></div>
+    </div>
+  </section>
 
-  <h2>Questions</h2>
-
-  <div class="card">
-    <strong>I got a new phone. How do I move my data?</strong>
-    <p>On the old phone: Settings → Backup → Save backup file, and put it in
-    iCloud Drive, Google Drive or your email. On the new phone: Settings →
-    Backup → Restore from file. A backup made on iPhone restores on Android and
-    the other way around.</p>
+  <div class="shots" style="--n: 8">
+    <img src="shots/1.jpg" alt="An estimate made in under a minute" width="540" height="960">
+    <img src="shots/2.jpg" alt="Voice input: say the job and the lines fill in" width="540" height="960" loading="lazy">
+    <img src="shots/3.jpg" alt="Home screen: this week, this month and who owes you" width="540" height="960" loading="lazy">
+    <img src="shots/4.jpg" alt="An invoice with a payment reminder" width="540" height="960" loading="lazy">
+    <img src="shots/5.jpg" alt="Ready services for every home-service trade" width="540" height="960" loading="lazy">
+    <img src="shots/6.jpg" alt="Deposits, crews by the hour and part payments" width="540" height="960" loading="lazy">
+    <img src="shots/7.jpg" alt="Regular clients with visit reminders" width="540" height="960" loading="lazy">
+    <img src="shots/8.jpg" alt="The app in Spanish and eight more languages" width="540" height="960" loading="lazy">
   </div>
 
-  <div class="card">
-    <strong>I paid for Pro but the app says Free.</strong>
-    <p>Open Settings → HandySlip Pro → Restore purchases, signed in with the same
-    Apple ID or Google account you bought it with.</p>
-  </div>
+  <section class="section wrap">
+    <div class="section-head">
+      <p class="eyebrow" style="color: var(--app)">Why we made it</p>
+      <h2>Pros lose jobs while they type estimates at night.</h2>
+    </div>
+    <div class="why">
+      <div>
+        <p class="label">The problem</p>
+        <p>A handyman or a cleaner works alone, without an office or a laptop. The price gets written on a scrap of paper or in a text message, the estimate is sent the next evening, and by then the client has hired someone else. Invoices are forgotten, and nobody remembers who still owes money.</p>
+      </div>
+      <div class="answer">
+        <p class="label">Our answer</p>
+        <p>HandySlip puts the whole office on the phone. Price the job while you are still at the client's, get a signature on the screen, take a deposit, turn the estimate into an invoice in one tap and see who owes you on the home screen.</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="card">
-    <strong>How do I cancel my subscription?</strong>
-    <p>iPhone: Settings → your name → Subscriptions. Android: Google Play →
-    profile → Payments and subscriptions → Subscriptions. Pro keeps working until
-    the end of the period you paid for.</p>
-  </div>
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" style="color: var(--app)">What makes it different</p>
+        <h2>Built for the trades, not for accountants.</h2>
+      </div>
+      <div class="plus">
+        <div><h3>Just say the job</h3><p>“Assemble two dressers and mount a 75 inch TV” fills in the lines from your price list. Nine languages.</p></div>
+        <div><h3>Ready for your trade</h3><p>Typical services and prices for moving, cleaning, painting, flooring, drywall, lawn care and more. Per item, hour, square foot or room.</p></div>
+        <div><h3>Looks professional</h3><p>A clean PDF with your logo, license, insurance and terms. The client signs right on your screen.</p></div>
+        <div><h3>Get paid faster</h3><p>Deposits, part payments, Zelle, Venmo, Cash App and PayPal with QR codes, and reminders for overdue invoices.</p></div>
+        <div><h3>Regular clients on autopilot</h3><p>Weekly cleaning or the lawn every two weeks: a reminder on the visit day and the invoice in one tap.</p></div>
+        <div><h3>Your data stays yours</h3><p>Works offline. No account, no ads, no tracking. Backups move between iPhone and Android.</p></div>
+      </div>
+    </div>
+  </section>
 
-  <div class="card">
-    <strong>Which languages does voice input understand?</strong>
-    <p>English, Spanish, Portuguese, Russian, Ukrainian, Polish, Romanian,
-    Bulgarian and Turkish, when your phone's speech recognition supports the
-    language (iPhone does not support Bulgarian). You can add your own words for
-    any service in Services → service → Words for voice input.</p>
-  </div>
+  <section class="section wrap">
+    <div class="section-head">
+      <p class="eyebrow" style="color: var(--app)">How it works</p>
+      <h2>From “How much?” to “Paid”.</h2>
+    </div>
+    <div class="steps">
+      <div><h3>Make the estimate</h3><p>Pick the client from your contacts, tap or say the services. Tax, travel fee and minimum charge add up by themselves.</p></div>
+      <div><h3>Send and sign</h3><p>Send the PDF by text, WhatsApp or email, or let the client sign on your phone and leave a deposit.</p></div>
+      <div><h3>Invoice and get paid</h3><p>One tap turns it into an invoice. Mark payments as they come in and send a receipt.</p></div>
+    </div>
+  </section>
 
-  <div class="card">
-    <strong>Does my data go to your servers?</strong>
-    <p>No. HandySlip has no servers. See the <a href="privacy.html">Privacy
-    Policy</a>.</p>
-  </div>
+  <section class="section band">
+    <div class="wrap two">
+      <div>
+        <p class="eyebrow" style="color: var(--app)">Privacy</p>
+        <h3>No servers. Nothing to leak.</h3>
+        <ul class="list">
+          <li>Clients, estimates and invoices stay on your phone</li>
+          <li>No account and no sign-up</li>
+          <li>No ads and no tracking</li>
+          <li>Backup files are protected with your password</li>
+        </ul>
+        <p class="small">Read the full <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Use</a>.</p>
+      </div>
+      <div>
+        <p class="eyebrow" style="color: var(--app)">Pricing</p>
+        <h3>Free to start, Pro when you grow</h3>
+        <ul class="list">
+          <li>Free: 3 new estimates and 3 business cards a month, invoices from them free</li>
+          <li>Pro: unlimited estimates, invoices and cards, your logo, no watermark, voice input, tax export</li>
+          <li>Monthly, yearly or a one-time lifetime purchase</li>
+          <li>Cancel anytime in your App Store or Google Play settings</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-  <h2>Contact</h2>
-  <p>Write to <a href="mailto:support@kuliktrade.com">support@kuliktrade.com</a>. We
-  usually answer within two business days.</p>
+  <section id="questions" class="section wrap faq">
+    <div class="section-head">
+      <p class="eyebrow" style="color: var(--app)">Support</p>
+      <h2>Questions</h2>
+    </div>
 
-  <nav><a href="../">K-Studio</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></nav>
+    <details>
+      <summary>I got a new phone. How do I move my data?</summary>
+      <p>On the old phone: Settings → Backup → Save backup file, and put it in
+      iCloud Drive, Google Drive or your email. On the new phone: Settings →
+      Backup → Restore from file. A backup made on iPhone restores on Android and
+      the other way around.</p>
+    </details>
+
+    <details>
+      <summary>I paid for Pro but the app says Free.</summary>
+      <p>Open Settings → HandySlip Pro → Restore purchases, signed in with the same
+      Apple ID or Google account you bought it with.</p>
+    </details>
+
+    <details>
+      <summary>How do I cancel my subscription?</summary>
+      <p>iPhone: Settings → your name → Subscriptions. Android: Google Play →
+      profile → Payments and subscriptions → Subscriptions. Pro keeps working until
+      the end of the period you paid for.</p>
+    </details>
+
+    <details>
+      <summary>Which languages does voice input understand?</summary>
+      <p>English, Spanish, Portuguese, Russian, Ukrainian, Polish, Romanian,
+      Bulgarian and Turkish, when your phone's speech recognition supports the
+      language (iPhone does not support Bulgarian). You can add your own words for
+      any service in Services → service → Words for voice input.</p>
+    </details>
+
+    <details>
+      <summary>Does my data go to your servers?</summary>
+      <p>No. HandySlip has no servers. See the <a href="privacy.html">Privacy
+      Policy</a>.</p>
+    </details>
+  </section>
+
+  <section class="section wrap" style="padding-top: 0">
+    <div class="contact">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>Something not working?</h2>
+        <p>Write to us. We usually answer within two business days.</p>
+      </div>
+      <a class="mail" href="mailto:support@kuliktrade.com">support@kuliktrade.com</a>
+    </div>
+  </section>
 </main>
+
+<footer class="footer">
+  <div class="wrap foot-row">
+    <p>© 2026 KULIK TRADE CORP. HandySlip is made by K-Studio.</p>
+    <p class="foot-links">
+      <a href="../">K-Studio</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+    </p>
+  </div>
+</footer>
 </body>
 </html>
