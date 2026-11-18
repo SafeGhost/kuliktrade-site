@@ -106,6 +106,7 @@ def page(lang, title, desc, canonical, alternates, body, jsonld=None, hero='', i
     alt += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}{alternates["en"]}">'
     ld = f'<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>' if jsonld else ''
     cta_text = re.sub(r'^Place of Truth\s*[:：—–-]\s*', '', ui['cta'])
+    cta_text = cta_text[:1].upper() + cta_text[1:]
     langs = ' · '.join(f'<a href="{alternates[l]}" hreflang="{l}">{LANG_NAME[l]}</a>' if l != lang else f'<b>{LANG_NAME[l]}</b>' for l in LANGS)
     return f'''<!doctype html>
 <html lang="{lang}">
