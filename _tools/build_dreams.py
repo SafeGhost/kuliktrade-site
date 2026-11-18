@@ -97,11 +97,15 @@ def path_for(lang, slug=None):
     root = '/dreams/' if lang == 'en' else f'/{lang}/dreams/'
     return root + (f'{slug}/' if slug else '')
 
-def page(lang, title, desc, canonical, alternates, body, jsonld=None):
+CAT_IMG = dict(animals='oasis-moon', sky='nile-felucca', home='temple-hall', people='statue-moon', love='lotus-temple', body='abu-simbel', food='lotus-temple', modern='sphinx-night')
+SHOT_LANG = dict(en='en', es='es', pt='pt', de='de', fr='fr', it='it', tr='tr', ja='ja', ru='ru')
+
+def page(lang, title, desc, canonical, alternates, body, jsonld=None, hero='', img='sphinx-night'):
     ui = UI[lang]
     alt = '\n'.join(f'<link rel="alternate" hreflang="{HREFLANG[l]}" href="{BASE}{u}">' for l, u in alternates.items())
     alt += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}{alternates["en"]}">'
     ld = f'<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>' if jsonld else ''
+    cta_text = re.sub(r'^Place of Truth\s*[:：—–-]\s*', '', ui['cta'])
     langs = ' · '.join(f'<a href="{alternates[l]}" hreflang="{l}">{LANG_NAME[l]}</a>' if l != lang else f'<b>{LANG_NAME[l]}</b>' for l in LANGS)
     return f'''<!doctype html>
 <html lang="{lang}">
@@ -114,18 +118,23 @@ def page(lang, title, desc, canonical, alternates, body, jsonld=None):
 {alt}
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
-<meta property="og:image" content="{BASE}/place-of-truth/icon.png">
+<meta property="og:image" content="{BASE}/assets/pot/{img}-wide.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Cormorant+SC:wght@600&display=swap" rel="stylesheet">
 <link rel="icon" href="/place-of-truth/icon.png" type="image/png">
-<link rel="stylesheet" href="/dreams/dreams.css">
+<link rel="stylesheet" href="/dreams/dreams.css?v=2">
+<style>.hero{{background-image:url(/assets/pot/{img}-wide.jpg)}}@media (max-width:700px){{.hero{{background-image:url(/assets/pot/{img}-tall.jpg)}}}}</style>
 {ld}
 </head>
 <body>
 <header class="top"><a class="brand" href="{path_for(lang)}"><img src="/place-of-truth/icon.png" alt="" width="32" height="32">{esc(ui['dict'])}</a></header>
+{hero}
 <main>
 {body}
 <aside class="cta">
-  <img src="/place-of-truth/icon.png" alt="Place of Truth" width="64" height="64">
-  <div><p>{esc(ui['cta'])}</p><p class="soon">{esc(ui['soon'])}</p><a class="btn" href="/#apps">{esc(ui['cta_btn'])}</a></div>
+  <img class="phone" src="/assets/pot/shots/{SHOT_LANG[lang]}/4.jpg" alt="Place of Truth" loading="lazy" width="150" height="267">
+  <div><h3>Place of Truth</h3><p>{esc(cta_text)}</p><p class="soon">{esc(ui['soon'])}</p><a class="btn" href="/place-of-truth/">{esc(ui['cta_btn'])}</a></div>
 </aside>
 <p class="src">{esc(ui['source'])}</p>
 </main>
@@ -170,20 +179,20 @@ def main():
             gl = sentences(t.get('gloss', ''), lang)
             sign = ui['good'] if d.get('good') else ui['bad']
             rel = ''.join(f'<li><a href="{path_for(lang, e["slug"])}">{esc(e[lang]["title"])}</a></li>' for e in d['rel'])
-            body = f'''<nav class="crumbs"><a href="{path_for(lang)}">{esc(ui['dict'])}</a> › {esc(CATS[d['category']][lang])}</nav>
-<article>
-<h1>{esc(ui['h1'].format(t=title))}</h1>
+            hero = f'''<section class="hero small"><div class="hero-in"><nav class="crumbs"><a href="{path_for(lang)}">{esc(ui['dict'])}</a> › {esc(CATS[d['category']][lang])}</nav><h1>{esc(ui['h1'].format(t=title))}</h1></div></section>'''
+            body = f'''<article>
+<div class="scroll">
 <p class="dream">{esc(t['dream'])}</p>
-<h2>{esc(ui['means'])}</h2>
 <p class="omen">{esc(o)}</p>
-<p class="sign {'good' if d.get('good') else 'bad'}">{esc(sign)}</p>
+<span class="sign {'good' if d.get('good') else 'bad'}">{esc(sign)}</span>
+</div>
 {('<h2>'+esc(ui['vars'])+'</h2><ul class="vars">'+''.join('<li>'+esc(g)+'</li>' for g in gl)+'</ul>') if gl else ''}
 {('<h2>'+esc(ui['related'])+'</h2><ul class="rel">'+rel+'</ul>') if rel else ''}
 </article>'''
             ld = {"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": lang,
                   "mainEntity": [{"@type": "Question", "name": ui['title'].format(t=title),
                                   "acceptedAnswer": {"@type": "Answer", "text": (o + ' ' + ' '.join(gl)).strip()}}]}
-            html_ = page(lang, ui['title'].format(t=title), ui['desc'].format(l=low_first(title, lang), t=title, o=o)[:300], canon, alts, body, ld)
+            html_ = page(lang, ui['title'].format(t=title), ui['desc'].format(l=low_first(title, lang), t=title, o=o)[:300], canon, alts, body, ld, hero=hero, img=CAT_IMG.get(d['category'], 'sphinx-night'))
             p = os.path.join(SITE, canon.strip('/'), 'index.html')
             os.makedirs(os.path.dirname(p), exist_ok=True)
             open(p, 'w', encoding='utf-8').write(html_)
@@ -197,14 +206,13 @@ def main():
             lis = ''.join(f'<li data-k="{esc((d[lang]["title"]+" "+d[lang].get("keys","")).lower())}"><a href="{path_for(lang, d["slug"])}">{esc(d[lang]["title"])}</a></li>' for d in items)
             groups += f'<section class="cat"><h2>{esc(CATS[cat][lang])}</h2><ul class="list">{lis}</ul></section>'
         alts = {l: path_for(l) for l in LANGS}
-        body = f'''<h1>{esc(ui['dict'])}</h1>
-<p class="lead">{esc(ui['dict_desc'].format(n=n))}</p>
-<input id="q" type="search" placeholder="{esc(ui['search'])}" aria-label="{esc(ui['search'])}" autocomplete="off">
+        hero = f'''<section class="hero"><div class="hero-in"><h1>{esc(ui['dict'])}</h1><p class="lead">{esc(ui['dict_desc'].format(n=n))}</p></div></section>'''
+        body = f'''<input id="q" type="search" placeholder="{esc(ui['search'])}" aria-label="{esc(ui['search'])}" autocomplete="off">
 {groups}
 <script>
 const q=document.getElementById('q');q.addEventListener('input',()=>{{const v=q.value.trim().toLowerCase();document.querySelectorAll('.list li').forEach(li=>{{li.hidden=v&&!li.dataset.k.includes(v)}});document.querySelectorAll('section.cat').forEach(s=>{{s.hidden=![...s.querySelectorAll('li')].some(li=>!li.hidden)}})}});
 </script>'''
-        html_ = page(lang, ui['dict_title'].format(n=n), ui['dict_desc'].format(n=n), alts[lang], alts, body)
+        html_ = page(lang, ui['dict_title'].format(n=n), ui['dict_desc'].format(n=n), alts[lang], alts, body, hero=hero, img='sphinx-night')
         p = os.path.join(SITE, alts[lang].strip('/'), 'index.html')
         os.makedirs(os.path.dirname(p), exist_ok=True)
         open(p, 'w', encoding='utf-8').write(html_)
